@@ -109,3 +109,17 @@ HealthBar.prototype.setPosition = function (x, y) {
     this.barSprite.position.y = y;
   }
 };
+
+
+HealthBar.prototype.setPercent = function(newValue){
+  if(newValue < 0) newValue = 0;
+  if(newValue > 100) newValue = 100;
+
+  var newWidth =  (newValue * this.config.width) / 100;
+
+  this.setWidth(newWidth);
+};
+
+HealthBar.prototype.setWidth = function(newWidth){
+  this.barSprite.width = newWidth;
+};
