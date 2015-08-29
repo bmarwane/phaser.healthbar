@@ -33,6 +33,7 @@ module.exports = HealthBar;
 
 HealthBar.prototype.setupConfiguration = function (providedConfig) {
   this.config = this.mergeWithDefaultConfiguration(providedConfig);
+  this.flipped = this.config.flipped;
 };
 
 HealthBar.prototype.mergeWithDefaultConfiguration = function(newConfig) {
@@ -47,7 +48,8 @@ HealthBar.prototype.mergeWithDefaultConfiguration = function(newConfig) {
     bar: {
       color: '#FEFF03'
     },
-    animationDuration: 200
+    animationDuration: 200,
+    flipped: false
   };
 
   return mergeObjetcs(defaultConfig, newConfig);
@@ -74,6 +76,10 @@ HealthBar.prototype.drawBackground = function() {
 
   this.bgSprite = this.game.add.sprite(this.x, this.y, bmd);
   this.bgSprite.anchor.set(0.5);
+
+  if(this.flipped){
+    this.bgSprite.scale.x = -1;
+  }
 };
 
 HealthBar.prototype.drawHealthBar = function() {
@@ -85,17 +91,10 @@ HealthBar.prototype.drawHealthBar = function() {
 
   this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width/2, this.y, bmd);
   this.barSprite.anchor.y = 0.5;
-};
 
-HealthBar.prototype.drawHealthBar = function() {
-  var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
-  bmd.ctx.fillStyle = this.config.bar.color;
-  bmd.ctx.beginPath();
-  bmd.ctx.rect(0, 0, this.config.width, this.config.height);
-  bmd.ctx.fill();
-
-  this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width/2, this.y, bmd);
-  this.barSprite.anchor.y = 0.5;
+  if(this.flipped){
+    this.barSprite.scale.x = -1;
+  }
 };
 
 HealthBar.prototype.setPosition = function (x, y) {
@@ -122,5 +121,8 @@ HealthBar.prototype.setPercent = function(newValue){
 };
 
 HealthBar.prototype.setWidth = function(newWidth){
+  if(this.flipped) {
+    newWidth = -1 * newWidth;
+  }
   this.game.add.tween(this.barSprite).to( { width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
 };

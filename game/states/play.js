@@ -11,11 +11,22 @@ var HealthBar = require('../prefabs/HealthBar.js');
     create: function() {
       this.game.stage.backgroundColor = '#1D70EF';
 
-      this.healthValue = 100;
-      this.myHealthBar = new HealthBar(this.game, {x: this.game.world.centerX, y: this.game.world.centerY -10});
+      var barre1_x = 150;
+      var barre1_y = 115;
 
-      this.minusButton = this.game.add.button(this.game.world.centerX - 50, this.game.world.centerY + 30, 'button', this.onMinusClick, this, 1, 1, 1, 1);
-      this.plusButton = this.game.add.button(this.game.world.centerX , this.game.world.centerY + 30, 'button', this.onPlusClick, this, 0);
+      var barre2_x = 450;
+      var barre2_y = 115;
+
+      this.healthValue = 100;
+      this.healthValue2 = 100;
+      this.myHealthBar = new HealthBar(this.game, {x: barre1_x, y: barre1_y});
+      this.myFlippedHealthBar = new HealthBar(this.game, {x: barre2_x, y: barre2_y, flipped: true});
+
+      this.minusButton = this.game.add.button(barre1_x - 50, barre1_y + 30, 'button', this.onMinusClick, this, 1, 1, 1, 1);
+      this.plusButton = this.game.add.button(barre1_x , barre1_y + 30, 'button', this.onPlusClick, this, 0);
+
+      this.minusButton2 = this.game.add.button(barre2_x - 50, barre2_y + 30, 'button', this.onMinus2Click, this, 1, 1, 1, 1);
+      this.plusButton2 = this.game.add.button(barre2_x , barre2_y + 30, 'button', this.onPlus2Click, this, 0);
 
     },
 
@@ -28,6 +39,16 @@ var HealthBar = require('../prefabs/HealthBar.js');
       this.healthValue = this.healthValue - 10;
       if(this.healthValue < 0) this.healthValue = 0;
       this.myHealthBar.setPercent(this.healthValue);
+    },
+    onPlus2Click: function(){
+      this.healthValue2 = this.healthValue2 + 10;
+      if(this.healthValue2 > 100) this.healthValue2 = 100;
+      this.myFlippedHealthBar.setPercent(this.healthValue2);
+    },
+    onMinus2Click: function(){
+      this.healthValue2 = this.healthValue2 - 10;
+      if(this.healthValue2 < 0) this.healthValue2 = 0;
+      this.myFlippedHealthBar.setPercent(this.healthValue2);
     }
   };
 module.exports = Play;
