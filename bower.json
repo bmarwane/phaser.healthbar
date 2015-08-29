@@ -1,0 +1,7 @@
+{
+  "name": "demo",
+  "version": "0.0.0",
+  "dependencies": {
+    "phaser-official": "2.4.3"
+  }
+}
