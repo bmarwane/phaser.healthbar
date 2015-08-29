@@ -46,7 +46,8 @@ HealthBar.prototype.mergeWithDefaultConfiguration = function(newConfig) {
     },
     bar: {
       color: '#FEFF03'
-    }
+    },
+    animationDuration: 200
   };
 
   return mergeObjetcs(defaultConfig, newConfig);
@@ -121,5 +122,5 @@ HealthBar.prototype.setPercent = function(newValue){
 };
 
 HealthBar.prototype.setWidth = function(newWidth){
-  this.barSprite.width = newWidth;
+  this.game.add.tween(this.barSprite).to( { width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
 };
