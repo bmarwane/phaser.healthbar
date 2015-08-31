@@ -1,6 +1,6 @@
 # Phaser.Healthbar
 
-Sources de la démo du tutorial accessible [ici](http://apprendre-le-js.com/bare-de-vie-phaser-js-healthbar).
+Sources de la démo du tutorial accessible [ici](http://apprendre-le-js.com/phaser-js-healthbar-tutorial).
 
 ### Installation
 
