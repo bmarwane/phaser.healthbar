@@ -36,7 +36,7 @@ create: function() {
 ```
 ## Configuration
 
-![]({{site.baseurl}}//phaser.healthbar.config.png)
+![](https://raw.githubusercontent.com/bmarwane/phaser.healthbar/master/phaser.healthbar.config.png)
 
 - width
 - height
