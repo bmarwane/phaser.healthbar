@@ -38,13 +38,13 @@ create: function() {
 
 ![](https://raw.githubusercontent.com/bmarwane/phaser.healthbar/master/phaser.healthbar.config.png)
 
-- width
-- height
-- x : initial x position 
-- y : initial y position
-- bg.color : background color
-- bar.color : color of the actual bar
-- animationDuration: control the animation when the bar value is changed
+- **width**
+- **height**
+- **x:** initial x position 
+- **y:** initial y position
+- **bg.color:** background color
+- **bar.color:** color of the actual bar
+- **animationDuration:** control the animation when the bar value is changed
 - **flipped:** if true the bar will change size from left to right
 
 this is the default configuration : 
