@@ -125,6 +125,3 @@ HealthBar.prototype.setWidth = function(newWidth){
   }
   this.game.add.tween(this.barSprite).to( { width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
 };
-
-
-module.exports = HealthBar; // for browserify, if not needed
