@@ -74,7 +74,7 @@ set the width of the bar to the passed percentage value.
 **example:**
 
 ```javascript
- this.myHealthBar = new HealthBar(this.game, {width: 120});
+ this.myHealthBar = new HealthBar(this.game, {x: 200, y: 200, width: 120});
 
  // the width will be set to 50% of the actual size so the new value will be 60
  this.myHealthBar.setPercent(50); 
