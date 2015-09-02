@@ -1,8 +1,8 @@
 # Phaser.Healthbar
 
-An attempt to create a simple and customisable healthbar for Phaser.js games.
+An attempt to create a simple and customizable healthbar for Phaser.js games.
 
-I made a tutorial in french that explain how to create this healthbar from scratch, you can check it out [here](http://apprendre-le-js.com/phaser-js-healthbar-tutorial/ "apprendre-le-js.com healthbar tutorial").
+I made a tutorial in French that explain how to create this health bar from scratch, you can check it out [here](http://apprendre-le-js.com/phaser-js-healthbar-tutorial/ "apprendre-le-js.com healthbar tutorial").
 
 ## Demo
 
