@@ -96,6 +96,11 @@ HealthBar.prototype.drawHealthBar = function() {
   }
 };
 
+HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
+    this.bgSprite.fixedToCamera = fixedToCamera;
+    this.barSprite.fixedToCamera = fixedToCamera;
+};
+
 HealthBar.prototype.setPosition = function (x, y) {
   this.x = x;
   this.y = y;
