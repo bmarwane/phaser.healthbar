@@ -85,7 +85,7 @@ set the width of the bar to the passed percentage value.
 
 ### setFixedToCamera(fixedToCamera);
  fixedToCamera must be true or false value (boolean type).
- method allow fixed to camera.
+ method allows fixed to camera.
 
  
  
