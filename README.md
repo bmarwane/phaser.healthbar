@@ -83,6 +83,10 @@ set the width of the bar to the passed percentage value.
 ### setPosition(x, y): 
  change the position of the bar to the provided coordinates.
 
+### setFixedToCamera(fixedToCamera);
+ fixedToCamera must be true or false value (boolean type).
+ method allows fixed to camera.
+
  
  
 

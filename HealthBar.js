@@ -51,13 +51,13 @@ HealthBar.prototype.mergeWithDefaultConfiguration = function(newConfig) {
     flipped: false
   };
 
-  return mergeObjetcs(defaultConfig, newConfig);
+  return mergeObjects(defaultConfig, newConfig);
 };
 
-function mergeObjetcs(targetObj, newObj) {
+function mergeObjects(targetObj, newObj) {
   for (var p in newObj) {
     try {
-      targetObj[p] = newObj[p].constructor==Object ? mergeObjetcs(targetObj[p], newObj[p]) : newObj[p];
+      targetObj[p] = newObj[p].constructor==Object ? mergeObjects(targetObj[p], newObj[p]) : newObj[p];
     } catch(e) {
       targetObj[p] = newObj[p];
     }
@@ -94,6 +94,11 @@ HealthBar.prototype.drawHealthBar = function() {
   if(this.flipped){
     this.barSprite.scale.x = -1;
   }
+};
+
+HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
+    this.bgSprite.fixedToCamera = fixedToCamera;
+    this.barSprite.fixedToCamera = fixedToCamera;
 };
 
 HealthBar.prototype.setPosition = function (x, y) {
