@@ -133,4 +133,9 @@ HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
     this.barSprite.fixedToCamera = fixedToCamera;
 };
 
+HealthBar.prototype.kill = function() {
+    this.bgSprite.kill();
+    this.barSprite.kill();
+};
+
 module.exports = HealthBar;

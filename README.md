@@ -87,6 +87,9 @@ set the width of the bar to the passed percentage value.
  fixedToCamera must be true or false value (boolean type).
  method allows fixed to camera.
 
+### kill();
+ will kill the healthbar.
+
  
  
 

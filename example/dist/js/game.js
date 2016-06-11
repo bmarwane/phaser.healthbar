@@ -14,25 +14,25 @@ window.onload = function () {
 
 },{"./states/play":3}],2:[function(require,module,exports){
 /**
-   Copyright (c) 2015 Belahcen Marwane (b.marwane@gmail.com)
+ Copyright (c) 2015 Belahcen Marwane (b.marwane@gmail.com)
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
  */
 
 var HealthBar = function(game, providedConfig) {
@@ -42,9 +42,9 @@ var HealthBar = function(game, providedConfig) {
   this.setPosition(this.config.x, this.config.y);
   this.drawBackground();
   this.drawHealthBar();
+  this.setFixedToCamera(this.config.isFixedToCamera);
 };
 HealthBar.prototype.constructor = HealthBar;
-module.exports = HealthBar;
 
 HealthBar.prototype.setupConfiguration = function (providedConfig) {
   this.config = this.mergeWithDefaultConfiguration(providedConfig);
@@ -64,7 +64,8 @@ HealthBar.prototype.mergeWithDefaultConfiguration = function(newConfig) {
       color: '#FEFF03'
     },
     animationDuration: 200,
-    flipped: false
+    flipped: false,
+    isFixedToCamera: false
   };
 
   return mergeObjetcs(defaultConfig, newConfig);
@@ -116,7 +117,7 @@ HealthBar.prototype.setPosition = function (x, y) {
   this.x = x;
   this.y = y;
 
-  if(this.bgSprite !== undefined & this.barSprite !== undefined){
+  if(this.bgSprite !== undefined && this.barSprite !== undefined){
     this.bgSprite.position.x = x;
     this.bgSprite.position.y = y;
 
@@ -141,6 +142,19 @@ HealthBar.prototype.setWidth = function(newWidth){
   }
   this.game.add.tween(this.barSprite).to( { width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
 };
+
+HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
+  this.bgSprite.fixedToCamera = fixedToCamera;
+  this.barSprite.fixedToCamera = fixedToCamera;
+};
+
+//Call to kill the healthBar if you want to make it disappear after character dies
+HealthBar.prototype.kill = function() {
+  this.bgSprite.kill();
+  this.barSprite.kill();
+};
+
+module.exports = HealthBar;
 
 },{}],3:[function(require,module,exports){
 'use strict';
@@ -179,6 +193,8 @@ var HealthBar = require('../prefabs/HealthBar.js');
       this.healthValue = this.healthValue + 10;
       if(this.healthValue > 100) this.healthValue = 100;
       this.myHealthBar.setPercent(this.healthValue);
+
+      this.myHealthBar.kill()
     },
     onMinusClick: function(){
       this.healthValue = this.healthValue - 10;
