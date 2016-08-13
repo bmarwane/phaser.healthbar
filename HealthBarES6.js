@@ -55,18 +55,9 @@ export default class HealthBar {
       isFixedToCamera: false
     };
 
-    return HealthBar.mergeObjetcs(defaultConfig, newConfig);
-  }
-
-  static mergeObjetcs(targetObj, newObj) {
-    for (var p in newObj) {
-      try {
-        targetObj[p] = newObj[p].constructor==Object ? HealthBar.mergeObjetcs(targetObj[p], newObj[p]) : newObj[p];
-      } catch(e) {
-        targetObj[p] = newObj[p];
-      }
-    }
-    return targetObj;
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+    //Properties in the target will be overwritten by properties in the sources if they have the same key.  Later sources' properties will similarly overwrite earlier ones.
+    return Object.assign(defaultConfig,newConfig);
   }
 
   drawBackground(){
