@@ -106,7 +106,7 @@ HealthBar.prototype.setPosition = function (x, y) {
         this.bgSprite.position.x = x;
         this.bgSprite.position.y = y;
 
-        this.barSprite.position.x = x - this.config.width/2;
+        this.barSprite.position.x = this.bgSprite.position.x - this.config.width * this.bgSprite.anchor.x;
         this.barSprite.position.y = y;
     }
 };
@@ -131,6 +131,12 @@ HealthBar.prototype.setWidth = function(newWidth){
 HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
     this.bgSprite.fixedToCamera = fixedToCamera;
     this.barSprite.fixedToCamera = fixedToCamera;
+};
+
+HealthBar.prototype.setAnchor = function(xAnchor, yAnchor) {
+    this.bgSprite.anchor.set(xAnchor, yAnchor);
+    this.barSprite.position.x = this.bgSprite.position.x - this.config.width * this.bgSprite.anchor.x;
+    this.barSprite.anchor.y = yAnchor;
 };
 
 HealthBar.prototype.kill = function() {
