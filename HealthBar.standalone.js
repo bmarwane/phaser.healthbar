@@ -68,7 +68,6 @@ function mergeObjetcs(targetObj, newObj) {
 }
 
 HealthBar.prototype.drawBackground = function() {
-
     var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
     bmd.ctx.fillStyle = this.config.bg.color;
     bmd.ctx.beginPath();
@@ -77,10 +76,6 @@ HealthBar.prototype.drawBackground = function() {
 
     this.bgSprite = this.game.add.sprite(this.x, this.y, bmd);
     this.bgSprite.anchor.set(0.5);
-
-    if(this.flipped){
-        this.bgSprite.scale.x = -1;
-    }
 };
 
 HealthBar.prototype.drawHealthBar = function() {
@@ -92,9 +87,9 @@ HealthBar.prototype.drawHealthBar = function() {
 
     this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width/2, this.y, bmd);
     this.barSprite.anchor.y = 0.5;
-
-    if(this.flipped){
-        this.barSprite.scale.x = -1;
+    if (this.flipped){
+      this.barSprite.anchor.x = 1;
+      this.barSprite.position.x = this.bgSprite.position.x + this.config.width * this.bgSprite.anchor.x;
     }
 };
 
@@ -108,6 +103,9 @@ HealthBar.prototype.setPosition = function (x, y) {
 
         this.barSprite.position.x = this.bgSprite.position.x - this.config.width * this.bgSprite.anchor.x;
         this.barSprite.position.y = y;
+        if (this.flipped){
+          this.barSprite.position.x = this.bgSprite.position.x;
+        }
     }
 };
 
@@ -122,9 +120,6 @@ HealthBar.prototype.setPercent = function(newValue){
 };
 
 HealthBar.prototype.setWidth = function(newWidth){
-    if(this.flipped) {
-        newWidth = -1 * newWidth;
-    }
     this.game.add.tween(this.barSprite).to( { width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
 };
 
@@ -135,11 +130,16 @@ HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
 
 HealthBar.prototype.setAnchor = function(xAnchor, yAnchor) {
     this.bgSprite.anchor.set(xAnchor, yAnchor);
-    this.barSprite.position.x = this.bgSprite.position.x - this.config.width * this.bgSprite.anchor.x;
+    this.barSprite.position.x = this.bgSprite.position.x - this.config.width * this.bgSprite.anchor.x;    
     this.barSprite.anchor.y = yAnchor;
+    if (this.flipped){
+      this.barSprite.anchor.x = 1;
+      this.barSprite.position.x = this.bgSprite.position.x;
+    }
 };
 
 HealthBar.prototype.kill = function() {
     this.bgSprite.kill();
     this.barSprite.kill();
 };
+
