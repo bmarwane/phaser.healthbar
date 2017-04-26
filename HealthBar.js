@@ -22,6 +22,7 @@
 
 var HealthBar = function(game, providedConfig) {
     this.game = game;
+    this.group = null;
 
     this.setupConfiguration(providedConfig);
     this.setPosition(this.config.x, this.config.y);
@@ -131,6 +132,20 @@ HealthBar.prototype.setWidth = function(newWidth){
 HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
     this.bgSprite.fixedToCamera = fixedToCamera;
     this.barSprite.fixedToCamera = fixedToCamera;
+};
+
+HealthBar.prototype.setToGroup = function(group) {
+    group.add(this.bgSprite);
+    group.add(this.barSprite);
+
+    this.group = group;
+};
+
+HealthBar.prototype.removeFromGroup = function() {
+    this.game.world.add(this.bgSprite);
+    this.game.world.add(this.barSprite);
+
+    this.group = null;
 };
 
 HealthBar.prototype.kill = function() {
