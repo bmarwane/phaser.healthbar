@@ -78,10 +78,18 @@ set the width of the bar to the passed percentage value.
 
  // the width will be set to 50% of the actual size so the new value will be 60
  this.myHealthBar.setPercent(50); 
- ```
+```
  
 ### setPosition(x, y): 
  change the position of the bar to the provided coordinates.
+ 
+### setBarColor(newColor)
+
+change the bar color, use the hex color format.
+example :
+```javascript
+this.myHealthBar.setBarColor('#fc9802');
+```
 
 ### setFixedToCamera(fixedToCamera);
  fixedToCamera must be true or false value (boolean type).
