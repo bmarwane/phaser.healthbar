@@ -39,6 +39,10 @@ var HealthBar = require('../prefabs/HealthBar.js');
       this.healthValue = this.healthValue - 10;
       if(this.healthValue < 0) this.healthValue = 0;
       this.myHealthBar.setPercent(this.healthValue);
+
+      if(this.healthValue < 70) {
+        this.myHealthBar.setBarColor('#fc9802');
+      }
     },
     onPlus2Click: function(){
       this.healthValue2 = this.healthValue2 + 10;
