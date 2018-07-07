@@ -80,7 +80,7 @@ HealthBar.prototype.drawBorder = function() {
     bmd.ctx.fillStyle = this.config.border.color;
     bmd.ctx.beginPath();
     bmd.ctx.rect(0, 0, this.config.width + border, this.config.height + border);
-    bmd.ctx.fill();
+    bmd.ctx.stroke();
     bmd.update();
 
     this.borderSprite = this.game.add.sprite(this.x, this.y, bmd);
