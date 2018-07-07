@@ -95,6 +95,12 @@ this.myHealthBar.setBarColor('#fc9802');
  fixedToCamera must be true or false value (boolean type).
  method allows fixed to camera.
 
+### setToGroup(group);
+ add bar to some group
+
+### removeFromGroup();
+ remove bar from current group and add back to game.world group
+
 ### kill();
  will kill the healthbar.
 
