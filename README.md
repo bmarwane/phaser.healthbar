@@ -1,6 +1,6 @@
-# Phaser.Healthbar
+# Phaser.HealthBar
 
-An attempt to create a simple and customizable healthbar for Phaser.js games.
+An attempt to create a simple and customizable health bar for Phaser.js games.
 
 I made a tutorial in French that explain how to create this health bar from scratch, you can check it out [here](http://apprendre-le-js.com/phaser-js-healthbar-tutorial/ "apprendre-le-js.com healthbar tutorial").
 
@@ -24,9 +24,9 @@ example :
 <script src="path/to/HealthBar.standalone.js"></script>
 ```
 
-### 2 - create a healthBar :
+### 2 - create a HealthBar :
 
-in the game/state create function instantiate a Healthbar like this: 
+in the game/state create function instantiate a HealthBar like this: 
 
 ```javascript
 create: function() {	
@@ -102,8 +102,11 @@ this.myHealthBar.setBarColor('#fc9802');
  remove bar from current group and add back to game.world group
 
 ### kill();
- will kill the healthbar.
+ will kill the HealthBar.
 
+# License
+
+Phaser.HealthBar is released under the [MIT License](https://opensource.org/licenses/MIT).
  
  
 
