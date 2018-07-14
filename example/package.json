@@ -10,7 +10,7 @@
     "grunt-open": "~0.2.0",
     "matchdep": "~0.1.2",
     "connect-livereload": "~0.5",
-    "moment": "~2.0.0",
+    "moment": "2.19.3",
     "grunt-html-build": "~0.3.2",
     "underscore": "*",
     "underscore.string": "*",
